@@ -11,17 +11,20 @@ class App extends Component {
 			profession: "Full Stack Developer",
 		},
 		shows: false, // Boolean to toggle the profile display
-		mountedTime: 0, // Track how long the component has been mounted
+		mountedTime: 0, // Trackhow long component has been mounted
 	};
 
 	// Lifecycle method - runs after the component is mounted
 	componentDidMount() {
-		// Set an interval to update the time since mount every second
+		// Setting an interval to update the 'mountedTime' state every second
 		this.timer = setInterval(() => {
+			// Use setState to update 'mountedTime'
+			// prevState refers to the previous state before the update
 			this.setState((prevState) => ({
+				// Increment 'mountedTime' by 1 each second
 				mountedTime: prevState.mountedTime + 1,
 			}));
-		}, 1000);
+		}, 1000); // Interval set to 1000 milliseconds (1 second)
 	}
 
 	// Lifecycle method - clean up when the component unmounts
@@ -29,8 +32,10 @@ class App extends Component {
 		clearInterval(this.timer); // Clear the timer
 	}
 
-	// Toggle show state to display/hide the profile
+	// Function to toggle the 'shows' state between true and false
 	toggleShow = () => {
+		// Update the state using setState()
+		// (!) this.state.shows inverts the current value of 'shows' (true becomes false, false becomes true)
 		this.setState({ shows: !this.state.shows });
 	};
 
@@ -55,8 +60,7 @@ class App extends Component {
 
 				{/* Display time since the component was mounted */}
 				<p>
-					Component has been mounted for: {mountedTime}{" "}
-					seconds
+					{`Component has been mounted for: ${mountedTime} seconds`}
 				</p>
 			</div>
 		);
